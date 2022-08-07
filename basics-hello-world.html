@@ -263,10 +263,10 @@ error: flake &apos;path:/Users/davidwong/Desktop/test_nix/hello&apos; does not p
                         
                         <tr>
                             <td class="explanation">
-                                You can also launch a shell that will act as a development environment by running `nix develop`. Unfortunately, this won&apos;t work on mac by default as well.
+                                You can also launch a shell that will act as a development environment by running `nix develop -i`. Unfortunately, this won&apos;t work on mac by default as well.
                             </td>
                             <td class="code">
-                                <pre><code class="console">$ hello nix develop
+                                <pre><code class="console">$ hello nix develop -i
 warning: creating lock file &apos;/some/path/hello/flake.lock&apos;
 error: flake &apos;path:/some/path/hello&apos; does not provide attribute &apos;devShells.x86_64-darwin.default&apos;, &apos;devShell.x86_64-darwin&apos;, &apos;packages.x86_64-darwin.default&apos; or &apos;defaultPackage.x86_64-darwin&apos;
 </code></pre>

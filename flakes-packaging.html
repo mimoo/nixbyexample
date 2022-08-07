@@ -308,7 +308,7 @@
                                 <pre><code class="nix">        pkgs.stdenv.mkDerivation {
           name = &quot;hello&quot;;
           src = self;
-          buildInputs = [ pkgs.gcc ];
+          buildInputs = [ pkgs.gcc pkgs.which ];
           buildPhase = &quot;gcc -o hello ./hello.c&quot;;
           installPhase = &quot;mkdir -p $out/bin; install -t $out/bin hello&quot;;
         };
@@ -351,11 +351,23 @@
                         
                         <tr>
                             <td class="explanation">
-                                In addition to `nix build` and `nix develop` that we&apos;ve seen previously, you can use `nix run` to directly run the created binary (it will try to run `&lt;out&gt;/bin/&lt;name&gt;`).
+                                While you can build your derivation using `nix build`, you can also directly run it using `nix run` (which will try to run `&lt;out&gt;/bin/&lt;name&gt;`).
                             </td>
                             <td class="code">
                                 <pre><code class="console">$ nix run
-hello world</code></pre>
+hello world
+</code></pre>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                Using `nix develop -i` you can open a shell that comprises the same dependencies as your build environment. (Note that `which` is accessible because we added it to the `buildInputs` of the derivation.
+                            </td>
+                            <td class="code">
+                                <pre><code class="console">$ nix develop -i
+$ which gcc
+/nix/store/h8v9jm7zsjzccp08c9jb5vh65yba02lb-gcc-wrapper-11.2.0/bin/gcc</code></pre>
                             </td>
                         </tr>
                         
