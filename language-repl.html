@@ -165,18 +165,6 @@
                         
 
                         
-
-                        
-
-                        
-
-                        
-
-                        <li>basics/repl</li>
-
-                        
-
-                        
                     </ul>
                     
                     <h2>The Nix Language</h2>
@@ -221,7 +209,8 @@
                                 The `nix repl` command opens a [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) which can be handy to debug or play with the language. As with most REPLs, `CTRL-c` allows you to cancel a command, and `CTRL-d` allows you to quit the REPL.
                             </td>
                             <td class="code">
-                                <pre><code class="console"></code></pre>
+                                <pre><code class="console">$ nix repl
+</code></pre>
                             </td>
                         </tr>
                         
@@ -230,9 +219,7 @@
                                 The nix language is a function language. If you&apos;ve done some OCaml before, it should not be too hard to ramp up. I recommend to read the Nix page on [learnXinYminutes](https://learnxinyminutes.com/docs/nix/), although it would be nice to have explanations on this page.
                             </td>
                             <td class="code">
-                                <pre><code class="console">$ nix repl
-
-nix-repl&gt; 1 + 1
+                                <pre><code class="console">nix-repl&gt; 1 + 1
 2
 
 nix-repl&gt; (import ./flake.nix)
