@@ -234,7 +234,53 @@ error: flake &apos;path:/Users/davidwong/Desktop/test_nix/hello&apos; does not p
                             <td class="code">
                                 <pre><code class="console">$ hello nix develop
 warning: creating lock file &apos;/some/path/hello/flake.lock&apos;
-error: flake &apos;path:/some/path/hello&apos; does not provide attribute &apos;devShells.x86_64-darwin.default&apos;, &apos;devShell.x86_64-darwin&apos;, &apos;packages.x86_64-darwin.default&apos; or &apos;defaultPackage.x86_64-darwin&apos;</code></pre>
+error: flake &apos;path:/some/path/hello&apos; does not provide attribute &apos;devShells.x86_64-darwin.default&apos;, &apos;devShell.x86_64-darwin&apos;, &apos;packages.x86_64-darwin.default&apos; or &apos;defaultPackage.x86_64-darwin&apos;
+</code></pre>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                If you are on mac, modify the flake file and replace `linux` with `darwin` and run `nix build` again. You should see two new files: a lock file and a result file symlinking to the built artifacts.
+                            </td>
+                            <td class="code">
+                                <pre><code class="console">$ ls -l
+total 16
+drwxr-xr-x  5 me  staff   160B Aug  7 14:31 .
+drwxr-xr-x  3 me  staff    96B Aug  7 13:40 ..
+-rw-r--r--  1 me  staff   508B Aug  7 14:12 flake.lock
+-rw-r--r--  1 me  staff   378B Aug  7 14:29 flake.nix
+lrwxr-xr-x  1 me  staff    56B Aug  7 14:31 result -&gt; /nix/store/zrm3agz6hqncqbbpmn8v3w70qzzd2wdd-hello-2.12.1
+</code></pre>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                In the folder symlinked by the `result` file you can find binaries and outputs produced by the build of the `hello` package.
+                            </td>
+                            <td class="code">
+                                <pre><code class="console">$ /nix/store/zrm3agz6hqncqbbpmn8v3w70qzzd2wdd-hello-2.12.1/bin/hello 
+Hello, world!
+</code></pre>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                Thix `nix flake show` command shows you what is encoded by the `flake.nix` file.
+                            </td>
+                            <td class="code">
+                                <pre><code class="console">$ nix flake show
+path:/some/path/hello?lastModified=1659875514&amp;narHash=sha256-mse3RPTu2OYYM%2fteTK54p6xgO5QpyYRiVdjZgj80%2frQ=
+├───defaultPackage
+│   ├───x86_64-darwin: package &apos;hello-2.12.1&apos;
+│   └───x86_64-linux: package &apos;hello-2.12.1&apos;
+└───packages
+    ├───x86_64-darwin
+    │   └───hello: package &apos;hello-2.12.1&apos;
+    └───x86_64-linux
+        └───hello: package &apos;hello-2.12.1&apos;</code></pre>
                             </td>
                         </tr>
                         
@@ -257,12 +303,63 @@ error: flake &apos;path:/some/path/hello&apos; does not provide attribute &apos;
   description = &quot;A very basic flake&quot;;
 
   outputs = { self, nixpkgs }: {
-
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+</code></pre>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                We obtain the `hello` package from [nixpkgs](https://github.com/NixOS/nixpkgs), the place for all softwares that were packaged with nix. What is `packages` and `defaultPackage`? Not sure.
+                            </td>
+                            <td class="code">
+                                <pre><code class="nix">    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
 
     defaultPackage.x86_64-linux = self.packages.x86_64-linux.hello;
 
   };
+}</code></pre>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                    
+                    <table class="explanation_code">
+                        <tr>
+                            <td class="explanation"></td>
+                            <td class="filename">
+                                <h2><code>flake.lock</code></h2>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                .
+                            </td>
+                            <td class="code">
+                                <pre><code class="nix">{
+  &quot;nodes&quot;: {
+    &quot;nixpkgs&quot;: {
+      &quot;locked&quot;: {
+        &quot;lastModified&quot;: 1659782844,
+        &quot;narHash&quot;: &quot;sha256-tM/qhHFE61puBxh9ebP3BIG1fkRAT4rHqD3jCM0HXGY=&quot;,
+        &quot;owner&quot;: &quot;NixOS&quot;,
+        &quot;repo&quot;: &quot;nixpkgs&quot;,
+        &quot;rev&quot;: &quot;c85e56bb060291eac3fb3c75d4e0e64f6836fcfe&quot;,
+        &quot;type&quot;: &quot;github&quot;
+      },
+      &quot;original&quot;: {
+        &quot;id&quot;: &quot;nixpkgs&quot;,
+        &quot;type&quot;: &quot;indirect&quot;
+      }
+    },
+    &quot;root&quot;: {
+      &quot;inputs&quot;: {
+        &quot;nixpkgs&quot;: &quot;nixpkgs&quot;
+      }
+    }
+  },
+  &quot;root&quot;: &quot;root&quot;,
+  &quot;version&quot;: 7
 }</code></pre>
                             </td>
                         </tr>
