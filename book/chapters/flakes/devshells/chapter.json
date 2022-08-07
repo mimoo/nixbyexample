@@ -1,0 +1,15 @@
+{
+    "title": "devshells",
+    "sections": [
+        {
+            "file": "flake.nix",
+            "lang": "nix",
+            "explanations": [
+                {
+                    "line": 1,
+                    "text": ""
+                }
+            ]
+        }
+    ]
+}

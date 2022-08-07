@@ -16,7 +16,8 @@
         {
             "title": "Flakes",
             "chapters": [
-                "flakes/packaging"
+                "flakes/packaging",
+                "flakes/devshells"
             ]
         }
     ]
