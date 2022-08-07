@@ -1,1 +1,11 @@
 $ nix flake new hello
+$ cd hello
+$ ls
+flake.nix
+
+$ nix build
+error: flake 'path:/Users/davidwong/Desktop/test_nix/hello' does not provide attribute 'packages.x86_64-darwin.default' or 'defaultPackage.x86_64-darwin'
+
+$ hello nix develop
+warning: creating lock file '/some/path/hello/flake.lock'
+error: flake 'path:/some/path/hello' does not provide attribute 'devShells.x86_64-darwin.default', 'devShell.x86_64-darwin', 'packages.x86_64-darwin.default' or 'defaultPackage.x86_64-darwin'

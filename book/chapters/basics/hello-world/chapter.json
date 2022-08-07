@@ -7,7 +7,25 @@
             "explanations": [
                 {
                     "line": 1,
-                    "text": ""
+                    "text": "To \"nixify\" a project, it only needs a `flake.nix` file at its root. To create one, you can use the `nix flake new` command."
+                },
+                {
+                    "line": 6,
+                    "text": "To build a ni  project, you can then use `nix build` which will find the `flake.nix` at the root of the project and build it. Unfortunately, by default mac is not supported."
+                },
+                {
+                    "line": 9,
+                    "text": "You can also launch a shell that will act as a development environment by running `nix develop`. Unfortunately, this won't work on mac by default as well."
+                }
+            ]
+        },
+        {
+            "file": "flake.nix",
+            "lang": "nix",
+            "explanations": [
+                {
+                    "line": 1,
+                    "text": "A .nix file is written using the nix language (more on that later)."
                 }
             ]
         }
