@@ -10,7 +10,7 @@
         pkgs.stdenv.mkDerivation {
           name = "hello";
           src = self;
-          buildInputs = [ pkgs.gcc ];
+          buildInputs = [ pkgs.gcc pkgs.which ];
           buildPhase = "gcc -o hello ./hello.c";
           installPhase = "mkdir -p $out/bin; install -t $out/bin hello";
         };

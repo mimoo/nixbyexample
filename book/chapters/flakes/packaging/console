@@ -2,3 +2,7 @@ $ nix flake check
 
 $ nix run
 hello world
+
+$ nix develop -i
+$ which gcc
+/nix/store/h8v9jm7zsjzccp08c9jb5vh65yba02lb-gcc-wrapper-11.2.0/bin/gcc

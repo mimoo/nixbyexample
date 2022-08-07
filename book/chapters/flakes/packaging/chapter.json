@@ -51,7 +51,11 @@
                 },
                 {
                     "line": 3,
-                    "text": "In addition to `nix build` and `nix develop` that we've seen previously, you can use `nix run` to directly run the created binary (it will try to run `<out>/bin/<name>`)."
+                    "text": "While you can build your derivation using `nix build`, you can also directly run it using `nix run` (which will try to run `<out>/bin/<name>`)."
+                },
+                {
+                    "line": 6,
+                    "text": "Using `nix develop -i` you can open a shell that comprises the same dependencies as your build environment. (Note that `which` is accessible because we added it to the `buildInputs` of the derivation."
                 }
             ]
         }

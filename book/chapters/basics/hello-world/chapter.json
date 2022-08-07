@@ -15,7 +15,7 @@
                 },
                 {
                     "line": 9,
-                    "text": "You can also launch a shell that will act as a development environment by running `nix develop`. Unfortunately, this won't work on mac by default as well."
+                    "text": "You can also launch a shell that will act as a development environment by running `nix develop -i`. Unfortunately, this won't work on mac by default as well."
                 },
                 {
                     "line": 13,

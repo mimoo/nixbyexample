@@ -7,7 +7,7 @@
             "explanations": [
                 {
                     "line": 1,
-                    "text": ""
+                    "text": "you can create devshells manually, but they won't use the derivation you created and the packages there. So not sure how useful it is."
                 }
             ]
         }
