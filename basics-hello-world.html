@@ -205,10 +205,65 @@
                         
                         <tr>
                             <td class="explanation">
-                                
+                                To &quot;nixify&quot; a project, it only needs a `flake.nix` file at its root. To create one, you can use the `nix flake new` command.
                             </td>
                             <td class="code">
-                                <pre><code class="console">$ nix flake new hello</code></pre>
+                                <pre><code class="console">$ nix flake new hello
+$ cd hello
+$ ls
+flake.nix
+</code></pre>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                To build a ni  project, you can then use `nix build` which will find the `flake.nix` at the root of the project and build it. Unfortunately, by default mac is not supported.
+                            </td>
+                            <td class="code">
+                                <pre><code class="console">$ nix build
+error: flake &apos;path:/Users/davidwong/Desktop/test_nix/hello&apos; does not provide attribute &apos;packages.x86_64-darwin.default&apos; or &apos;defaultPackage.x86_64-darwin&apos;
+</code></pre>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                You can also launch a shell that will act as a development environment by running `nix develop`. Unfortunately, this won&apos;t work on mac by default as well.
+                            </td>
+                            <td class="code">
+                                <pre><code class="console">$ hello nix develop
+warning: creating lock file &apos;/some/path/hello/flake.lock&apos;
+error: flake &apos;path:/some/path/hello&apos; does not provide attribute &apos;devShells.x86_64-darwin.default&apos;, &apos;devShell.x86_64-darwin&apos;, &apos;packages.x86_64-darwin.default&apos; or &apos;defaultPackage.x86_64-darwin&apos;</code></pre>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                    
+                    <table class="explanation_code">
+                        <tr>
+                            <td class="explanation"></td>
+                            <td class="filename">
+                                <h2><code>flake.nix</code></h2>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                A .nix file is written using the nix language (more on that later).
+                            </td>
+                            <td class="code">
+                                <pre><code class="nix">{
+  description = &quot;A very basic flake&quot;;
+
+  outputs = { self, nixpkgs }: {
+
+    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+
+    defaultPackage.x86_64-linux = self.packages.x86_64-linux.hello;
+
+  };
+}</code></pre>
                             </td>
                         </tr>
                         
