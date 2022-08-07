@@ -189,6 +189,23 @@
                         
                     </ul>
                     
+                    <h2>Flakes</h2>
+                    <ul>
+                        
+
+                        
+
+                        
+
+                        
+
+                        <li><a href="flakes-packaging.html">packaging 101</a></li>
+
+                        
+
+                        
+                    </ul>
+                    
                 </div>
 
             </div>
@@ -314,7 +331,7 @@ path:/some/path/hello?lastModified=1659875514&amp;narHash=sha256-mse3RPTu2OYYM%2
                         
                         <tr>
                             <td class="explanation">
-                                We obtain the `hello` package from [nixpkgs](https://github.com/NixOS/nixpkgs), the place for all softwares that were packaged with nix. What is `packages`? Why are we using `legacyPackages`? No idea.
+                                We obtain the `hello` package from [nixpkgs](https://github.com/NixOS/nixpkgs), the place for all softwares that were packaged with nix. Note that `packages` is a list of `packages` we want to package, and it is a special keyword recognized by `nix` (so you can write `nix build#hello`). For this reason, `nixpkgs` had to use a different keyword called  `legacyPackages`.
                             </td>
                             <td class="code">
                                 <pre><code class="nix">    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
@@ -324,7 +341,7 @@ path:/some/path/hello?lastModified=1659875514&amp;narHash=sha256-mse3RPTu2OYYM%2
                         
                         <tr>
                             <td class="explanation">
-                                the `defaultPackage` points to what `nix` builds. Don&apos;t worry too much about the content of our `flake.nix` for now, you&apos;ll have to learn a bit more about the nix language before we go back to that.
+                                the `defaultPackage` points to what `nix build` will build by default. It is a deprecated keyword, which is still used by the nix CLI for some reason. Don&apos;t worry too much about the content of our `flake.nix` for now, you&apos;ll have to learn a bit more about the nix language before we go back to that.
                             </td>
                             <td class="code">
                                 <pre><code class="nix">    defaultPackage.x86_64-linux = self.packages.x86_64-linux.hello;

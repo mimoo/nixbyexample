@@ -174,11 +174,10 @@
                         
 
                         
-                        
 
                         
 
-                        <li>REPL</li>
+                        <li><a href="language-repl.html">REPL</a></li>
 
                         
 
@@ -190,16 +189,13 @@
                         
 
                         
-                        
-                        
+
                         
                         
 
                         
 
-                        
-
-                        <li><a href="flakes-packaging.html">packaging 101</a></li>
+                        <li>packaging 101</li>
 
                         
 
@@ -214,8 +210,110 @@
 
                 <div class="container">
 
-                    <h1>REPL</h1>
+                    <h1>packaging 101</h1>
 
+                    
+                    <table class="explanation_code">
+                        <tr>
+                            <td class="explanation"></td>
+                            <td class="filename">
+                                <h2><code>hello.c</code></h2>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                Let&apos;s imagine that we want to package a C binary, so that one can easily install it or develop on it.
+                            </td>
+                            <td class="code">
+                                <pre><code class="c">int main() { 
+    printf(&quot;hello world&quot;); 
+    return 0;
+}</code></pre>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                    
+                    <table class="explanation_code">
+                        <tr>
+                            <td class="explanation"></td>
+                            <td class="filename">
+                                <h2><code>flake.nix</code></h2>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                The first thing to do is to create a `flake.nix` file.
+                            </td>
+                            <td class="code">
+                                <pre><code class="nix">{
+  description = &quot;My own hello world&quot;;
+</code></pre>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                a flake must contain an output function that takes an attribute set of at least `self` and an optional number of packages to use (here just `nixpkgs`).
+                            </td>
+                            <td class="code">
+                                <pre><code class="nix">  outputs = { self, nixpkgs }: </code></pre>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                The first thing we do here, is to create a function that we will reuse to build our package for different systems (mac and linux). This function takes one argument: `system`.
+                            </td>
+                            <td class="code">
+                                <pre><code class="nix">    let 
+      build_for = system:</code></pre>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                We import `nixpkgs` with the `system` that we passed as argument (same as writing `system = system;` in the second argument of `import`.
+                            </td>
+                            <td class="code">
+                                <pre><code class="nix">        let 
+          pkgs = import nixpkgs { inherit system; };
+        in</code></pre>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                `stdenv.mkDerivation` allows us to create a **derivation**, which is nix&apos;s term for a package.
+                            </td>
+                            <td class="code">
+                                <pre><code class="nix">        pkgs.stdenv.mkDerivation {
+          name = &quot;hello&quot;;
+          src = self;
+          buildInputs = [ pkgs.gcc ];
+          buildPhase = &quot;gcc -o hello ./hello.c&quot;;
+          installPhase = &quot;mkdir -p $out/bin; install -t $out/bin hello&quot;;
+        };
+    in</code></pre>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                the `output` function must return an attribute set containing default packages for one or more platforms.
+                            </td>
+                            <td class="code">
+                                <pre><code class="nix">    {
+      packages.x86_64-darwin.default = build_for &quot;x86_64-darwin&quot;;
+      packages.x86_64-linux.default = build_for &quot;x86_64-linux&quot;;
+    };
+}</code></pre>
+                            </td>
+                        </tr>
+                        
+                    </table>
                     
                     <table class="explanation_code">
                         <tr>
@@ -227,45 +325,21 @@
                         
                         <tr>
                             <td class="explanation">
-                                The `nix repl` command opens a [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) which can be handy to debug or play with the language. As with most REPLs, `CTRL-c` allows you to cancel a command, and `CTRL-d` allows you to quit the REPL.
+                                You can use `nix flake check` to make sure that the flake is correctly written.
                             </td>
                             <td class="code">
-                                <pre><code class="console">$ nix repl
+                                <pre><code class="console">$ nix flake check
 </code></pre>
                             </td>
                         </tr>
                         
                         <tr>
                             <td class="explanation">
-                                The nix language is a function language. If you&apos;ve done some OCaml before, it should not be too hard to ramp up. I recommend to read the Nix page on [learnXinYminutes](https://learnxinyminutes.com/docs/nix/), although it would be nice to have explanations on this page.
+                                In addition to `nix build` and `nix develop` that we&apos;ve seen previously, you can use `nix run` to directly run the created binary (it will try to run `&lt;out&gt;/bin/&lt;name&gt;`).
                             </td>
                             <td class="code">
-                                <pre><code class="console">Welcome to Nix 2.9.1. Type :? for help.
-
-nix-repl&gt;</code></pre>
-                            </td>
-                        </tr>
-                        
-                    </table>
-                    
-                    <table class="explanation_code">
-                        <tr>
-                            <td class="explanation"></td>
-                            <td class="filename">
-                                <h2><code>repl</code></h2>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="explanation">
-                                The nix language is a function language. If you&apos;ve done some OCaml before, it should not be too hard to ramp up. I recommend to read the Nix page on [learnXinYminutes](https://learnxinyminutes.com/docs/nix/), although it would be nice to have explanations on this page.
-                            </td>
-                            <td class="code">
-                                <pre><code class="console">nix-repl&gt; 1 + 1
-2
-
-nix-repl&gt; (import ./flake.nix)
-{ description = &quot;A very basic flake&quot;; outputs = «lambda @ /some/path/hello/flake.nix:4:13»; }</code></pre>
+                                <pre><code class="console">$ nix run
+hello world</code></pre>
                             </td>
                         </tr>
                         
@@ -274,7 +348,7 @@ nix-repl&gt; (import ./flake.nix)
 
                     <div style="text-align:right">
                         
-                        next: <a href="flakes-packaging.html">packaging 101</a>
+                        you've reached the end!
                         
                     </div>
 
