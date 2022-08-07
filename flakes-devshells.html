@@ -145,20 +145,15 @@
                         
 
                         
-                        
 
                         
 
-                        <li>setup</li>
+                        <li><a href="basics-setup.html">setup</a></li>
 
                         
 
                         
 
-                        
-                        
-                        
-                        
                         
 
                         
@@ -208,10 +203,11 @@
                         
 
                         
+                        
 
                         
 
-                        <li><a href="flakes-devshells.html">devshells</a></li>
+                        <li>devshells</li>
 
                         
 
@@ -226,33 +222,57 @@
 
                 <div class="container">
 
-                    <h1>setup</h1>
+                    <h1>devshells</h1>
 
                     
                     <table class="explanation_code">
                         <tr>
                             <td class="explanation"></td>
                             <td class="filename">
-                                <h2><code>console</code></h2>
+                                <h2><code>flake.nix</code></h2>
                             </td>
                         </tr>
                         
                         <tr>
                             <td class="explanation">
-                                You can install nix by following the instruction on their [github](https://github.com/NixOS/nix) or executing the following command in your terminal.
+                                
                             </td>
                             <td class="code">
-                                <pre><code class="console">$ curl -L https://nixos.org/nix/install | sh
-</code></pre>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="explanation">
-                                Nix&apos;s manpages are really good and you should use them as first documentation.
-                            </td>
-                            <td class="code">
-                                <pre><code class="console"># nix --help</code></pre>
+                                <pre><code class="nix">{
+  description = &quot;My own hello world&quot;;
+
+  outputs = { self, nixpkgs }: (
+    let 
+      build_for = system:
+        let 
+          pkgs = import nixpkgs { inherit system; };
+        in
+        pkgs.stdenv.mkDerivation {
+          name = &quot;hello&quot;;
+          src = self;
+          buildInputs = [ pkgs.gcc ];
+          buildPhase = &quot;gcc -o hello ./hello.c&quot;;
+          installPhase = &quot;mkdir -p $out/bin; install -t $out/bin hello&quot;;
+        };
+      shell_for = system:
+        let 
+          pkgs = import nixpkgs { inherit system; };
+        in
+        pkgs.mkShell {
+          packages = [
+            pkgs.gcc
+            pkgs.python
+          ];
+        };
+    in
+    {
+      packages.x86_64-darwin.default = build_for &quot;x86_64-darwin&quot;;
+      packages.x86_64-linux.default = build_for &quot;x86_64-linux&quot;;
+
+      devShells.x86_64-darwin.default = shell_for &quot;x86_64-darwin&quot;;
+      devShells.x86_64-linux.default = shell_for &quot;x86_64-linux&quot;;
+    });
+}</code></pre>
                             </td>
                         </tr>
                         
@@ -261,7 +281,7 @@
 
                     <div style="text-align:right">
                         
-                        next: <a href="basics-hello-world.html">hello world</a>
+                        you've reached the end!
                         
                     </div>
 
