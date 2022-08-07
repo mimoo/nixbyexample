@@ -177,7 +177,24 @@
 
                         
 
-                        <li><a href="basics-repl.html">REPL</a></li>
+                        <li>basics/repl</li>
+
+                        
+
+                        
+                    </ul>
+                    
+                    <h2>The Nix Language</h2>
+                    <ul>
+                        
+
+                        
+
+                        
+
+                        
+
+                        <li><a href="language-repl.html">REPL</a></li>
 
                         
 
@@ -309,12 +326,20 @@ path:/some/path/hello?lastModified=1659875514&amp;narHash=sha256-mse3RPTu2OYYM%2
                         
                         <tr>
                             <td class="explanation">
-                                We obtain the `hello` package from [nixpkgs](https://github.com/NixOS/nixpkgs), the place for all softwares that were packaged with nix. What is `packages` and `defaultPackage`? Not sure.
+                                We obtain the `hello` package from [nixpkgs](https://github.com/NixOS/nixpkgs), the place for all softwares that were packaged with nix. What is `packages`? Why are we using `legacyPackages`? No idea.
                             </td>
                             <td class="code">
                                 <pre><code class="nix">    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-
-    defaultPackage.x86_64-linux = self.packages.x86_64-linux.hello;
+</code></pre>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                the `defaultPackage` points to what `nix` builds. Don&apos;t worry too much about the content of our `flake.nix` for now, you&apos;ll have to learn a bit more about the nix language before we go back to that.
+                            </td>
+                            <td class="code">
+                                <pre><code class="nix">    defaultPackage.x86_64-linux = self.packages.x86_64-linux.hello;
 
   };
 }</code></pre>
@@ -333,7 +358,7 @@ path:/some/path/hello?lastModified=1659875514&amp;narHash=sha256-mse3RPTu2OYYM%2
                         
                         <tr>
                             <td class="explanation">
-                                .
+                                The `flake.lock` file is created when you build for the first time. It is then used to track the hash of each dependencies you listed, so that they do not change under you in the future.
                             </td>
                             <td class="code">
                                 <pre><code class="nix">{
@@ -369,7 +394,7 @@ path:/some/path/hello?lastModified=1659875514&amp;narHash=sha256-mse3RPTu2OYYM%2
 
                     <div style="text-align:right">
                         
-                        next: <a href="basics-repl.html">REPL</a>
+                        next: <a>basics/repl</a>
                         
                     </div>
 
