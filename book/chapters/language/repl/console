@@ -1,0 +1,7 @@
+$ nix repl
+
+nix-repl> 1 + 1
+2
+
+nix-repl> (import ./flake.nix)
+{ description = "A very basic flake"; outputs = «lambda @ /some/path/hello/flake.nix:4:13»; }

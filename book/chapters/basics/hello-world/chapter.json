@@ -41,7 +41,11 @@
                 },
                 {
                     "line": 6,
-                    "text": "We obtain the `hello` package from [nixpkgs](https://github.com/NixOS/nixpkgs), the place for all softwares that were packaged with nix. What is `packages` and `defaultPackage`? Not sure."
+                    "text": "We obtain the `hello` package from [nixpkgs](https://github.com/NixOS/nixpkgs), the place for all softwares that were packaged with nix. What is `packages`? Why are we using `legacyPackages`? No idea."
+                },
+                {
+                    "line": 8,
+                    "text": "the `defaultPackage` points to what `nix` builds. Don't worry too much about the content of our `flake.nix` for now, you'll have to learn a bit more about the nix language before we go back to that."
                 }
             ]
         },
@@ -51,7 +55,7 @@
             "explanations": [
                 {
                     "line": 1,
-                    "text": "."
+                    "text": "The `flake.lock` file is created when you build for the first time. It is then used to track the hash of each dependencies you listed, so that they do not change under you in the future."
                 }
             ]
         }

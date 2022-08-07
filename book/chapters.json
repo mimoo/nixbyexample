@@ -7,6 +7,12 @@
                 "basics/hello-world",
                 "basics/repl"
             ]
+        },
+        {
+            "title": "The Nix Language",
+            "chapters": [
+                "language/repl"
+            ]
         }
     ]
 }
