@@ -16,6 +16,18 @@
                 {
                     "line": 9,
                     "text": "You can also launch a shell that will act as a development environment by running `nix develop`. Unfortunately, this won't work on mac by default as well."
+                },
+                {
+                    "line": 13,
+                    "text": "If you are on mac, modify the flake file and replace `linux` with `darwin` and run `nix build` again. You should see two new files: a lock file and a result file symlinking to the built artifacts."
+                },
+                {
+                    "line": 21,
+                    "text": "In the folder symlinked by the `result` file you can find binaries and outputs produced by the build of the `hello` package."
+                },
+                {
+                    "line": 24,
+                    "text": "Thix `nix flake show` command shows you what is encoded by the `flake.nix` file."
                 }
             ]
         },
@@ -26,6 +38,20 @@
                 {
                     "line": 1,
                     "text": "A .nix file is written using the nix language (more on that later)."
+                },
+                {
+                    "line": 6,
+                    "text": "We obtain the `hello` package from [nixpkgs](https://github.com/NixOS/nixpkgs), the place for all softwares that were packaged with nix. What is `packages` and `defaultPackage`? Not sure."
+                }
+            ]
+        },
+        {
+            "file": "flake.lock",
+            "lang": "nix",
+            "explanations": [
+                {
+                    "line": 1,
+                    "text": "."
                 }
             ]
         }

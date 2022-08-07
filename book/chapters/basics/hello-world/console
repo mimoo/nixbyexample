@@ -9,3 +9,25 @@ error: flake 'path:/Users/davidwong/Desktop/test_nix/hello' does not provide att
 $ hello nix develop
 warning: creating lock file '/some/path/hello/flake.lock'
 error: flake 'path:/some/path/hello' does not provide attribute 'devShells.x86_64-darwin.default', 'devShell.x86_64-darwin', 'packages.x86_64-darwin.default' or 'defaultPackage.x86_64-darwin'
+
+$ ls -l
+total 16
+drwxr-xr-x  5 me  staff   160B Aug  7 14:31 .
+drwxr-xr-x  3 me  staff    96B Aug  7 13:40 ..
+-rw-r--r--  1 me  staff   508B Aug  7 14:12 flake.lock
+-rw-r--r--  1 me  staff   378B Aug  7 14:29 flake.nix
+lrwxr-xr-x  1 me  staff    56B Aug  7 14:31 result -> /nix/store/zrm3agz6hqncqbbpmn8v3w70qzzd2wdd-hello-2.12.1
+
+$ /nix/store/zrm3agz6hqncqbbpmn8v3w70qzzd2wdd-hello-2.12.1/bin/hello 
+Hello, world!
+
+$ nix flake show
+path:/some/path/hello?lastModified=1659875514&narHash=sha256-mse3RPTu2OYYM%2fteTK54p6xgO5QpyYRiVdjZgj80%2frQ=
+├───defaultPackage
+│   ├───x86_64-darwin: package 'hello-2.12.1'
+│   └───x86_64-linux: package 'hello-2.12.1'
+└───packages
+    ├───x86_64-darwin
+    │   └───hello: package 'hello-2.12.1'
+    └───x86_64-linux
+        └───hello: package 'hello-2.12.1'
