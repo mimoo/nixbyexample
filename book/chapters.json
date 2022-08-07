@@ -12,6 +12,12 @@
             "chapters": [
                 "language/repl"
             ]
+        },
+        {
+            "title": "Flakes",
+            "chapters": [
+                "flakes/packaging"
+            ]
         }
     ]
 }

@@ -1,0 +1,4 @@
+$ nix flake check
+
+$ nix run
+hello world

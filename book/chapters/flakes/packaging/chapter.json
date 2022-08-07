@@ -1,0 +1,59 @@
+{
+    "title": "packaging 101",
+    "sections": [
+        {
+            "file": "hello.c",
+            "lang": "c",
+            "explanations": [
+                {
+                    "line": 1,
+                    "text": "Let's imagine that we want to package a C binary, so that one can easily install it or develop on it."
+                }
+            ]
+        },
+        {
+            "file": "flake.nix",
+            "lang": "nix",
+            "explanations": [
+                {
+                    "line": 1,
+                    "text": "The first thing to do is to create a `flake.nix` file."
+                },
+                {
+                    "line": 4,
+                    "text": "a flake must contain an output function that takes an attribute set of at least `self` and an optional number of packages to use (here just `nixpkgs`)."
+                },
+                {
+                    "line": 5,
+                    "text": "The first thing we do here, is to create a function that we will reuse to build our package for different systems (mac and linux). This function takes one argument: `system`."
+                },
+                {
+                    "line": 7,
+                    "text": "We import `nixpkgs` with the `system` that we passed as argument (same as writing `system = system;` in the second argument of `import`."
+                },
+                {
+                    "line": 10,
+                    "text": "`stdenv.mkDerivation` allows us to create a **derivation**, which is nix's term for a package."
+                },
+                {
+                    "line": 18,
+                    "text": "the `output` function must return an attribute set containing default packages for one or more platforms."
+                }
+            ]
+        },
+        {
+            "file": "console",
+            "lang": "console",
+            "explanations": [
+                {
+                    "line": 1,
+                    "text": "You can use `nix flake check` to make sure that the flake is correctly written."
+                },
+                {
+                    "line": 3,
+                    "text": "In addition to `nix build` and `nix develop` that we've seen previously, you can use `nix run` to directly run the created binary (it will try to run `<out>/bin/<name>`)."
+                }
+            ]
+        }
+    ]
+}

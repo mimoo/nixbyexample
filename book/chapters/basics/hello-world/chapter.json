@@ -41,11 +41,11 @@
                 },
                 {
                     "line": 6,
-                    "text": "We obtain the `hello` package from [nixpkgs](https://github.com/NixOS/nixpkgs), the place for all softwares that were packaged with nix. What is `packages`? Why are we using `legacyPackages`? No idea."
+                    "text": "We obtain the `hello` package from [nixpkgs](https://github.com/NixOS/nixpkgs), the place for all softwares that were packaged with nix. Note that `packages` is a list of `packages` we want to package, and it is a special keyword recognized by `nix` (so you can write `nix build#hello`). For this reason, `nixpkgs` had to use a different keyword called  `legacyPackages`."
                 },
                 {
                     "line": 8,
-                    "text": "the `defaultPackage` points to what `nix` builds. Don't worry too much about the content of our `flake.nix` for now, you'll have to learn a bit more about the nix language before we go back to that."
+                    "text": "the `defaultPackage` points to what `nix build` will build by default. It is a deprecated keyword, which is still used by the nix CLI for some reason. Don't worry too much about the content of our `flake.nix` for now, you'll have to learn a bit more about the nix language before we go back to that."
                 }
             ]
         },
