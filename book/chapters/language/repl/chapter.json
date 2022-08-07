@@ -14,6 +14,16 @@
                     "text": "The nix language is a function language. If you've done some OCaml before, it should not be too hard to ramp up. I recommend to read the Nix page on [learnXinYminutes](https://learnxinyminutes.com/docs/nix/), although it would be nice to have explanations on this page."
                 }
             ]
+        },
+        {
+            "file": "repl",
+            "lang": "console",
+            "explanations": [
+                {
+                    "line": 1,
+                    "text": "The nix language is a function language. If you've done some OCaml before, it should not be too hard to ramp up. I recommend to read the Nix page on [learnXinYminutes](https://learnxinyminutes.com/docs/nix/), although it would be nice to have explanations on this page."
+                }
+            ]
         }
     ]
 }

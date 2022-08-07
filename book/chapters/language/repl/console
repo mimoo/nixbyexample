@@ -1,7 +1,5 @@
 $ nix repl
 
-nix-repl> 1 + 1
-2
+Welcome to Nix 2.9.1. Type :? for help.
 
-nix-repl> (import ./flake.nix)
-{ description = "A very basic flake"; outputs = «lambda @ /some/path/hello/flake.nix:4:13»; }
+nix-repl>
