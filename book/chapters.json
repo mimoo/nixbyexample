@@ -1,0 +1,12 @@
+{
+    "parts": [
+        {
+            "title": "Basics",
+            "chapters": [
+                "basics/setup",
+                "basics/hello-world",
+                "basics/repl"
+            ]
+        }
+    ]
+}

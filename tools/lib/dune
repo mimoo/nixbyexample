@@ -1,0 +1,5 @@
+(library
+ (name byexample)
+ (libraries core core_unix core_unix.sys_unix yojson jingoo)
+ (preprocess
+  (pps ppx_deriving.show)))

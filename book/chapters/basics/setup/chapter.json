@@ -1,0 +1,19 @@
+{
+    "title": "setup",
+    "sections": [
+        {
+            "file": "console",
+            "lang": "console",
+            "explanations": [
+                {
+                    "line": 1,
+                    "text": "You can install nix by following the instruction on their [github](https://github.com/NixOS/nix) or executing the following command in your terminal."
+                },
+                {
+                    "line": 3,
+                    "text": "Nix's manpages are really good and you should use them as first documentation."
+                }
+            ]
+        }
+    ]
+}

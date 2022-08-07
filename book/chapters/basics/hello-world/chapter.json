@@ -1,0 +1,15 @@
+{
+    "title": "hello world",
+    "sections": [
+        {
+            "file": "console",
+            "lang": "console",
+            "explanations": [
+                {
+                    "line": 1,
+                    "text": ""
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+name: Deploy to Github pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: get code
+        uses: actions/checkout@v2
+
+      - name: Setup ocaml
+        uses: avsm/setup-ocaml@v1
+        with:
+          ocaml-version: 4.12.0
+          #              ^^^^^^
+
+      - name: Build
+        run: |
+          eval $(opam env)
+          make deps
+          make 
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

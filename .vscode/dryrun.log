@@ -1,0 +1,4 @@
+make: Entering directory `/Users/davidwong/Perso/nixbyexample'
+dune exec bin/main.exe --root ./tools 
+make: Leaving directory `/Users/davidwong/Perso/nixbyexample'
+ 
