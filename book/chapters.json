@@ -17,6 +17,7 @@
             "title": "Flakes",
             "chapters": [
                 "flakes/packaging",
+                "flakes/flake-utils",
                 "flakes/devshells"
             ]
         }

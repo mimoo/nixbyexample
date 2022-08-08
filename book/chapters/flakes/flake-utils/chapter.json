@@ -1,0 +1,15 @@
+{
+    "title": "packaging 101",
+    "sections": [
+        {
+            "file": "flake.nix",
+            "lang": "nix",
+            "explanations": [
+                {
+                    "line": 1,
+                    "text": "Writing the same build instructions for each systems is a bit tedious, fortunately you can use [flake-utils](https://github.com/numtide/flake-utils) to automate all of that."
+                }
+            ]
+        }
+    ]
+}
