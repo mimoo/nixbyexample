@@ -21,7 +21,7 @@
                 },
                 {
                     "line": 4,
-                    "text": "a flake must contain an output function that takes an attribute set of at least `self` and an optional number of packages to use (here just `nixpkgs`)."
+                    "text": "a flake must contain an `outputs` function that takes an attribute set of at least `self` and an optional number of packages to use (here just `nixpkgs`)."
                 },
                 {
                     "line": 5,
