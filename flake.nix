@@ -58,6 +58,9 @@
 
             nativeBuildInputs = [
               ocamlPackages.odoc
+              ocamlPackages.yojson
+              ocamlPackages.jingoo
+              ocamlPackages.ppx_deri
             ];
 
             strictDeps = true;
