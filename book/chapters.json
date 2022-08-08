@@ -18,7 +18,8 @@
             "chapters": [
                 "flakes/packaging",
                 "flakes/flake-utils",
-                "flakes/devshells"
+                "flakes/devshells",
+                "flakes/overlays"
             ]
         }
     ]

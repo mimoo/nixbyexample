@@ -114,7 +114,7 @@
 
             # Tools from packages
             inputsFrom = [
-              self.packages.${system}.hello
+              self.packages.${system}.byexample
             ];
           };
         };
