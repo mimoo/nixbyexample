@@ -272,7 +272,7 @@
                         
                         <tr>
                             <td class="explanation">
-                                a flake must contain an output function that takes an attribute set of at least `self` and an optional number of packages to use (here just `nixpkgs`).
+                                a flake must contain an `outputs` function that takes an attribute set of at least `self` and an optional number of packages to use (here just `nixpkgs`).
                             </td>
                             <td class="code">
                                 <pre><code class="nix">  outputs = { self, nixpkgs }: </code></pre>
