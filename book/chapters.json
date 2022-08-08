@@ -10,7 +10,9 @@
         {
             "title": "The Nix Language",
             "chapters": [
-                "language/repl"
+                "language/repl",
+                "language/let-in",
+                "language/functions"
             ]
         },
         {

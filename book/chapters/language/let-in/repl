@@ -1,0 +1,6 @@
+nix-repl> let 
+            a = 5;
+            b = 7;
+          in
+          a + b
+12

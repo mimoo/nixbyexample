@@ -5,6 +5,7 @@
   inputs = {
     # Convenience functions for writing flakes
     flake-utils.url = "github:numtide/flake-utils";
+
     # Precisely filter files copied to the nix store
     nix-filter.url = "github:numtide/nix-filter";
   };

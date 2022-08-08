@@ -1,13 +1,13 @@
 {
-    "title": "overlays",
+    "title": "let ... in ...",
     "sections": [
         {
-            "file": "flake.nix",
-            "lang": "nix",
+            "file": "repl",
+            "lang": "console",
             "explanations": [
                 {
                     "line": 1,
-                    "text": "TODO"
+                    "text": "..."
                 }
             ]
         }
