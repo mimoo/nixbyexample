@@ -198,10 +198,11 @@
                         
 
                         
+                        
 
                         
 
-                        <li><a href="language-functions.html">functions</a></li>
+                        <li>functions</li>
 
                         
 
@@ -213,22 +214,21 @@
                         
 
                         
-
                         
                         
-
                         
-
-                        <li>packaging 101</li>
+                        
 
                         
 
                         
 
+                        <li><a href="flakes-packaging.html">packaging 101</a></li>
+
                         
+
                         
-                        
-                        
+
                         
 
                         
@@ -274,148 +274,27 @@
 
                 <div class="container">
 
-                    <h1>packaging 101</h1>
+                    <h1>functions</h1>
 
                     
                     <table class="explanation_code">
                         <tr>
                             <td class="explanation"></td>
                             <td class="filename">
-                                <h2><code>hello.c</code></h2>
+                                <h2><code>repl</code></h2>
                             </td>
                         </tr>
                         
                         <tr>
                             <td class="explanation">
-                                Let&apos;s imagine that we want to package a C binary, so that one can easily install it or develop on it.
+                                ...
                             </td>
                             <td class="code">
-                                <pre><code class="c">int main() { 
-    printf(&quot;hello world&quot;); 
-    return 0;
-}</code></pre>
-                            </td>
-                        </tr>
-                        
-                    </table>
-                    
-                    <table class="explanation_code">
-                        <tr>
-                            <td class="explanation"></td>
-                            <td class="filename">
-                                <h2><code>flake.nix</code></h2>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="explanation">
-                                The first thing to do is to create a `flake.nix` file.
-                            </td>
-                            <td class="code">
-                                <pre><code class="nix">{
-  description = &quot;My own hello world&quot;;
-</code></pre>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="explanation">
-                                a flake must contain an `outputs` function that takes an attribute set of at least `self` and an optional number of packages to use (here just `nixpkgs`).
-                            </td>
-                            <td class="code">
-                                <pre><code class="nix">  outputs = { self, nixpkgs }: </code></pre>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="explanation">
-                                The first thing we do here, is to create a function that we will reuse to build our package for different systems (mac and linux). This function takes one argument: `system`.
-                            </td>
-                            <td class="code">
-                                <pre><code class="nix">    let 
-      build_for = system:</code></pre>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="explanation">
-                                We import `nixpkgs` with the `system` that we passed as argument (same as writing `system = system;` in the second argument of `import`.
-                            </td>
-                            <td class="code">
-                                <pre><code class="nix">        let 
-          pkgs = import nixpkgs { inherit system; };
-        in</code></pre>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="explanation">
-                                `stdenv.mkDerivation` allows us to create a **derivation**, which is nix&apos;s term for a package.
-                            </td>
-                            <td class="code">
-                                <pre><code class="nix">        pkgs.stdenv.mkDerivation {
-          name = &quot;hello&quot;;
-          src = self;
-          buildInputs = [ pkgs.gcc pkgs.which ];
-          buildPhase = &quot;gcc -o hello ./hello.c&quot;;
-          installPhase = &quot;mkdir -p $out/bin; install -t $out/bin hello&quot;;
-        };
-    in</code></pre>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="explanation">
-                                the `output` function must return an attribute set containing default packages for one or more platforms.
-                            </td>
-                            <td class="code">
-                                <pre><code class="nix">    {
-      packages.x86_64-darwin.default = build_for &quot;x86_64-darwin&quot;;
-      packages.x86_64-linux.default = build_for &quot;x86_64-linux&quot;;
-    };
-}</code></pre>
-                            </td>
-                        </tr>
-                        
-                    </table>
-                    
-                    <table class="explanation_code">
-                        <tr>
-                            <td class="explanation"></td>
-                            <td class="filename">
-                                <h2><code>console</code></h2>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="explanation">
-                                You can use `nix flake check` to make sure that the flake is correctly written.
-                            </td>
-                            <td class="code">
-                                <pre><code class="console">$ nix flake check
-</code></pre>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="explanation">
-                                While you can build your derivation using `nix build`, you can also directly run it using `nix run` (which will try to run `&lt;out&gt;/bin/&lt;name&gt;`).
-                            </td>
-                            <td class="code">
-                                <pre><code class="console">$ nix run
-hello world
-</code></pre>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="explanation">
-                                Using `nix develop -i` you can open a shell that comprises the same dependencies as your build environment. (Note that `which` is accessible because we added it to the `buildInputs` of the derivation.
-                            </td>
-                            <td class="code">
-                                <pre><code class="console">$ nix develop -i
-$ which gcc
-/nix/store/h8v9jm7zsjzccp08c9jb5vh65yba02lb-gcc-wrapper-11.2.0/bin/gcc</code></pre>
+                                <pre><code class="console">nix-repl&gt; let 
+            add = a: b: a + b;
+          in 
+          add 1 2
+3</code></pre>
                             </td>
                         </tr>
                         
@@ -424,7 +303,7 @@ $ which gcc
 
                     <div style="text-align:right">
                         
-                        next: <a href="flakes-flake-utils.html">packaging 101</a>
+                        next: <a href="flakes-packaging.html">packaging 101</a>
                         
                     </div>
 
