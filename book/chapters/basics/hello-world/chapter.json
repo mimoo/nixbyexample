@@ -11,7 +11,7 @@
                 },
                 {
                     "line": 6,
-                    "text": "To build a ni  project, you can then use `nix build` which will find the `flake.nix` at the root of the project and build it. Unfortunately, by default mac is not supported."
+                    "text": "To build a nix project, you can then use `nix build` which will find the `flake.nix` at the root of the project and build it. Unfortunately, by default mac is not supported."
                 },
                 {
                     "line": 9,
